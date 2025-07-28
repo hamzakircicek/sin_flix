@@ -72,6 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                   TextFieldUi(
+                    type: TextInputType.emailAddress,
                     hintText: 'E-Posta',
                     controller: eMail,
                     prefixAsset: 'assets/Message.png',

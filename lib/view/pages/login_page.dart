@@ -66,38 +66,42 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            Form(
-              key: _formKey,
-              child: Column(
-                spacing: 15,
-                children: [
-                  TextFieldUi(
-                    hintText: 'E-Posta',
-                    controller: eMail,
-                    prefixAsset: 'assets/Message.png',
-                    validator: (x) {
-                      if (x == null || x.isEmpty) {
-                        return 'E-Posta Zorunludur';
-                      } else if (!x.contains('@')) {
-                        return 'Lütfen Doğru Formatta Giriniz.';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFieldUi(
-                    hintText: 'Şifre',
-                    controller: password,
-                    isPassworKeyboard: true,
-                    prefixAsset: 'assets/Unlock.png',
-                    suffixAsset: 'assets/Hide.png',
-                    validator: (x) {
-                      if (x == null || x.isEmpty) {
-                        return 'Şifre Boş Geçilemez';
-                      }
-                      return null;
-                    },
-                  ),
-                ],
+            SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  spacing: 15,
+                  children: [
+                    TextFieldUi(
+                      hintText: 'E-Posta',
+                      controller: eMail,
+                      type: TextInputType.emailAddress,
+                      prefixAsset: 'assets/Message.png',
+                      validator: (x) {
+                        if (x == null || x.isEmpty) {
+                          return 'E-Posta Zorunludur';
+                        } else if (!x.contains('@')) {
+                          return 'Lütfen Doğru Formatta Giriniz.';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFieldUi(
+                      hintText: 'Şifre',
+                      controller: password,
+                      isPassworKeyboard: true,
+                      prefixAsset: 'assets/Unlock.png',
+                      suffixAsset: 'assets/Hide.png',
+                      validator: (x) {
+                        if (x == null || x.isEmpty) {
+                          return 'Şifre Boş Geçilemez';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
 

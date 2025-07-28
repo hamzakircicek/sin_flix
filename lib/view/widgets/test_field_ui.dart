@@ -7,6 +7,7 @@ class TextFieldUi extends StatefulWidget {
   final String hintText;
   final String? suffixAsset;
   final bool isPassworKeyboard;
+  final TextInputType? type;
 
   const TextFieldUi({
     super.key,
@@ -16,6 +17,7 @@ class TextFieldUi extends StatefulWidget {
     required this.validator,
     this.isPassworKeyboard = false,
     this.suffixAsset,
+    this.type = TextInputType.text,
   });
 
   @override
@@ -23,6 +25,7 @@ class TextFieldUi extends StatefulWidget {
 }
 
 class _TextFieldUiState extends State<TextFieldUi> {
+  bool _showPassword = false;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -31,7 +34,8 @@ class _TextFieldUiState extends State<TextFieldUi> {
       cursorHeight: 17,
       style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 14),
       controller: widget.controller,
-      obscureText: widget.isPassworKeyboard,
+      obscureText: _showPassword ? false : widget.isPassworKeyboard,
+      keyboardType: widget.type,
       decoration: InputDecoration(
         hintText: widget.hintText,
         prefixIcon: Padding(
@@ -46,7 +50,13 @@ class _TextFieldUiState extends State<TextFieldUi> {
             widget.suffixAsset != null
                 ? Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(widget.suffixAsset!),
+                  child: InkWell(
+                    onTap:
+                        () => setState(() {
+                          _showPassword = !_showPassword;
+                        }),
+                    child: Image.asset(widget.suffixAsset!),
+                  ),
                 )
                 : null,
       ),
