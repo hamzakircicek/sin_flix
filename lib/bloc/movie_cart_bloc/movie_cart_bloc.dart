@@ -14,10 +14,9 @@ class MovieCartBloc extends Bloc<MovieCartEvents, MovieCartState> {
         _favIds.remove(movieId);
         emit(AddedFavorite(movie: event.movie, favIds: Set.from(_favIds)));
       } else {
-        emit(AddedFavorite(movie: event.movie, favIds: Set.from(_favIds)));
-
-        _favIds.add(movieId);
         await MovieDataServices.addToFavorite(favoriteId: movieId);
+        _favIds.add(movieId);
+        emit(AddedFavorite(movie: event.movie, favIds: Set.from(_favIds)));
       }
     });
 
