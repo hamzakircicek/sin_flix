@@ -56,64 +56,67 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ],
             ),
-            Form(
-              key: _formKey,
-              child: Column(
-                spacing: 15,
-                children: [
-                  TextFieldUi(
-                    hintText: 'Ad Soyad',
-                    controller: userName,
-                    prefixAsset: 'assets/Add-User.png',
-                    validator: (x) {
-                      if (x == null || x.isEmpty) {
-                        return 'Ad Soyad Zorunludur';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFieldUi(
-                    type: TextInputType.emailAddress,
-                    hintText: 'E-Posta',
-                    controller: eMail,
-                    prefixAsset: 'assets/Message.png',
-                    validator: (x) {
-                      if (x == null || x.isEmpty) {
-                        return 'E-Posta Zorunludur';
-                      } else if (!x.contains('@')) {
-                        return 'Lütfen Doğru Formatta Giriniz.';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFieldUi(
-                    hintText: 'Şifre',
-                    controller: password,
-                    isPassworKeyboard: true,
-                    prefixAsset: 'assets/Unlock.png',
-                    suffixAsset: 'assets/Hide.png',
-                    validator: (x) {
-                      if (x == null || x.isEmpty) {
-                        return 'Şifre Boş Geçilemez';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFieldUi(
-                    hintText: 'Şifre Tekrar',
-                    controller: passwordTwo,
-                    isPassworKeyboard: true,
-                    prefixAsset: 'assets/Unlock.png',
-                    validator: (x) {
-                      if (x == null || x.isEmpty) {
-                        return 'Şifre Alanı Boş Geçilemez';
-                      } else if (x != password.text) {
-                        return 'Şifreler Aynı Olmalı';
-                      }
-                      return null;
-                    },
-                  ),
-                ],
+            SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  spacing: 15,
+                  children: [
+                    TextFieldUi(
+                      hintText: 'Ad Soyad',
+                      controller: userName,
+                      prefixAsset: 'assets/Add-User.png',
+                      validator: (x) {
+                        if (x == null || x.isEmpty) {
+                          return 'Ad Soyad Zorunludur';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFieldUi(
+                      type: TextInputType.emailAddress,
+                      hintText: 'E-Posta',
+                      controller: eMail,
+                      prefixAsset: 'assets/Message.png',
+                      validator: (x) {
+                        if (x == null || x.isEmpty) {
+                          return 'E-Posta Zorunludur';
+                        } else if (!x.contains('@')) {
+                          return 'Lütfen Doğru Formatta Giriniz.';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFieldUi(
+                      hintText: 'Şifre',
+                      controller: password,
+                      isPassworKeyboard: true,
+                      prefixAsset: 'assets/Unlock.png',
+                      suffixAsset: 'assets/Hide.png',
+                      validator: (x) {
+                        if (x == null || x.isEmpty) {
+                          return 'Şifre Boş Geçilemez';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFieldUi(
+                      hintText: 'Şifre Tekrar',
+                      controller: passwordTwo,
+                      isPassworKeyboard: true,
+                      prefixAsset: 'assets/Unlock.png',
+                      validator: (x) {
+                        if (x == null || x.isEmpty) {
+                          return 'Şifre Alanı Boş Geçilemez';
+                        } else if (x != password.text) {
+                          return 'Şifreler Aynı Olmalı';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
 
