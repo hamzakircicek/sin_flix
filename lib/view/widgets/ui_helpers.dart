@@ -95,15 +95,15 @@ class UiHelpers {
                                   text: 'Premium Hesap',
                                 ),
                                 _bonusWidget(
-                                  assetPath: 'assets/jewellery.png',
+                                  assetPath: 'assets/couple_heart.png',
                                   text: 'Daha Fazla Eşleşme',
                                 ),
                                 _bonusWidget(
-                                  assetPath: 'assets/jewellery.png',
+                                  assetPath: 'assets/single_heart.png',
                                   text: 'Öne Çıkarma',
                                 ),
                                 _bonusWidget(
-                                  assetPath: 'assets/jewellery.png',
+                                  assetPath: 'assets/ok.png',
                                   text: 'Daha Fazla Beğeni',
                                 ),
                               ],
