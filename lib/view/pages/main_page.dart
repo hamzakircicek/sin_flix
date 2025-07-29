@@ -22,6 +22,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget>? widgets;
   bool isFavIdsLoaded = false;
   late PageController controller;
+
   @override
   void initState() {
     controller = PageController();
@@ -53,12 +54,15 @@ class _MainPageState extends State<MainPage> {
       }
 
       widgets = [TimeLine(), Profile(pageController: controller)];
-      return PageView.builder(
-        controller: controller,
-        onPageChanged: (i) async {},
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: widgets!.length,
-        itemBuilder: (BuildContext ctx, int i) => widgets![i],
+      return Stack(
+        children: [
+          PageView.builder(
+            controller: controller,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: widgets!.length,
+            itemBuilder: (BuildContext ctx, int i) => widgets![i],
+          ),
+        ],
       );
     } else if (state is LoadingError) {
       return SizedBox();

@@ -8,6 +8,7 @@ class LoadMovies extends MainPageEvents {
 
 class AddMorePageEvent extends MainPageEvents {
   final int page;
+  final topIndex;
 
-  AddMorePageEvent(this.page);
+  AddMorePageEvent(this.page, this.topIndex);
 }

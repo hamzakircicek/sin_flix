@@ -5,8 +5,9 @@ abstract class MainPageState {}
 class Loading extends MainPageState {}
 
 class Loaded extends MainPageState {
+  final bool moveMovieLoading;
   final List<Movie> movies;
-  Loaded(this.movies);
+  Loaded(this.movies, this.moveMovieLoading);
 }
 
 class LoadingError extends MainPageState {

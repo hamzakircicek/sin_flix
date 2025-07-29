@@ -59,6 +59,8 @@ dependencies:
   # https://pub.dev/packages/flutter_native_splash
   flutter_native_splash: ^2.4.6
 
+  # https://pub.dev/packages/transparent_image/install
+  transparent_image: ^2.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

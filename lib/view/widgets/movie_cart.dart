@@ -7,6 +7,7 @@ import 'package:movie_app/bloc/movie_cart_bloc/movie_cart_state.dart';
 import 'package:movie_app/model/movie_model.dart';
 import 'package:movie_app/theme.dart';
 import 'package:movie_app/view/widgets/rectangle_buttons.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MovieCart extends StatefulWidget {
   final Movie movie;
@@ -34,15 +35,10 @@ class _MovieCartState extends State<MovieCart> {
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: Image.network(
-                widget.movie.poster.replaceAll('http:', 'https:'),
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: widget.movie.poster.replaceAll('http:', 'https:'),
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(
-                    Icons.image_not_supported,
-                    color: Colors.grey,
-                  );
-                },
               ),
             ),
 
