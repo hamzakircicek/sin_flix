@@ -70,14 +70,9 @@ class ClientService {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final String body = await response.stream.bytesToString();
-      print(body);
-      print('başarılı');
+
       return jsonDecode(body)['data'];
     }
-
-    final String body = await response.stream.bytesToString();
-    print(body);
-    print('resim gönderimi başarısız');
 
     return null;
   }

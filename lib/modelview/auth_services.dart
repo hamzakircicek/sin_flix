@@ -32,7 +32,7 @@ class AuthServices {
     );
     if (response != null) {
       final data = jsonDecode(response);
-      print(data);
+
       UserModel user = UserModel.fromJson(data['data']);
       if (pref != null && user.token != null) {
         await pref.setString('token', user.token!);

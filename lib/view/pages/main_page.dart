@@ -20,9 +20,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   List<Widget>? widgets;
-
+  bool isFavIdsLoaded = false;
   late PageController controller;
-  bool _isRefreshing = false;
   @override
   void initState() {
     controller = PageController();
@@ -30,17 +29,6 @@ class _MainPageState extends State<MainPage> {
       context.read<MainPageBloc>().add(LoadMovies(1));
     }
     super.initState();
-  }
-
-  Future<void> _onRefresh() async {
-    setState(() {
-      _isRefreshing = true;
-    });
-    context.read<MainPageBloc>().add(LoadMovies(1));
-    await Future.delayed(Duration(milliseconds: 500));
-    setState(() {
-      _isRefreshing = false;
-    });
   }
 
   @override
@@ -59,21 +47,18 @@ class _MainPageState extends State<MainPage> {
     if (state is Loading) {
       return CircularProgressWidget();
     } else if (state is Loaded) {
-      context.read<MovieCartBloc>().add(LoadingFavIds(movies: state.movies));
+      if (!isFavIdsLoaded) {
+        context.read<MovieCartBloc>().add(LoadingFavIds(movies: state.movies));
+        isFavIdsLoaded = true;
+      }
+
       widgets = [TimeLine(), Profile(pageController: controller)];
-      return RefreshIndicator(
-        onRefresh: () async {
-          if (controller.page!.floor() == 1) {
-            print('Yenilendii');
-          }
-        },
-        child: PageView.builder(
-          controller: controller,
-          onPageChanged: (i) async {},
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: widgets!.length,
-          itemBuilder: (BuildContext ctx, int i) => widgets![i],
-        ),
+      return PageView.builder(
+        controller: controller,
+        onPageChanged: (i) async {},
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: widgets!.length,
+        itemBuilder: (BuildContext ctx, int i) => widgets![i],
       );
     } else if (state is LoadingError) {
       return SizedBox();

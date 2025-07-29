@@ -35,7 +35,6 @@ class MainPageBloc extends Bloc<MainPageEvents, MainPageState> {
           emit(Loaded(List.from(movies)));
         }
       } catch (e) {
-        print('Hata var ');
         emit(LoadingErrorMorePageState('Bir hata oluştu: ${e.toString()}'));
       }
     });

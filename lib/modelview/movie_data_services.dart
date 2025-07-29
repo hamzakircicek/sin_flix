@@ -7,7 +7,6 @@ class MovieDataServices {
   static Future<MovieModel?> getMovies({required int page}) async {
     final res = await ClientService.get(endPoint: 'movie/list?page=$page');
     if (res != null) {
-      print(res);
       return MovieModelFromJson(res);
     }
     return null;
@@ -19,11 +18,9 @@ class MovieDataServices {
     );
 
     if (res != null) {
-      print(jsonDecode(res)['data']['movie']);
       return Movie.fromJson(jsonDecode(res)['data']['movie']);
     }
-    print(res);
-    print('Hatalı istek');
+
     return null;
   }
 

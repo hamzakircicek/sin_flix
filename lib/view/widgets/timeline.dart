@@ -42,9 +42,8 @@ class _TimeLineState extends State<TimeLine> {
         scrollDirection: Axis.vertical,
         physics: const BouncingScrollPhysics(),
         onPageChanged: (i) {
-          print(controller.position.pixels);
           activePage = i + 1;
-          print(activePage);
+
           if ((i + 1) % 5 == 0) {
             context.read<MainPageBloc>().add(
               AddMorePageEvent(((i + 1) / 5).floor() + 1),
